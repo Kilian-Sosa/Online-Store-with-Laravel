@@ -54,6 +54,7 @@
         <small>
             Desarrollo web en entorno servidor - 2º DAW
         </small>
+        <p>@yield('date')</p>
         </div>
     </div>
     <!-- footer -->

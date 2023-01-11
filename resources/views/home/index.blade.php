@@ -13,3 +13,4 @@
 		</div>
 	</div>
 @endsection
+@section('date', now()->format('d-m-Y H:i:s'))
