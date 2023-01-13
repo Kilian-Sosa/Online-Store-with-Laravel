@@ -28,7 +28,7 @@ Modifica la plantilla "app.blade.php" para incluir el fichero anterior. Al hacer
 
 Incluye también en la plantilla "app.blade.php" el pie de página contenido en el fichero adjunto "footer.html".  Debe estar ubicado entre los comentarios "<!-- footer -->"
 
-# A5.3 - Creación de un controlador y de las páginas princial y 'about'
+# A5.3 - Creación de un controlador y de las páginas principal y 'about'
 En esta actividad vamos a crear dos nuevas páginas: Una página principal asociada a la ruta "/" y una página titulada "Acerca de". Ambas páginas deberán estar accesibles a través de los enlaces del menú principal.
 
 ## Página principal

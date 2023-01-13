@@ -54,7 +54,7 @@
         <small>
             Desarrollo web en entorno servidor - 2º DAW
         </small>
-        <p>@yield('date')</p>
+        <p>{{now()->format('d-m-Y H:i:s')}}</p>
         </div>
     </div>
     <!-- footer -->
