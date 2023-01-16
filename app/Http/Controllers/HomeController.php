@@ -11,6 +11,7 @@ class HomeController extends Controller{
         $viewData["title"] = "Página principal - Tienda online";
         return view('home.index')->with("viewData", $viewData);
     }
+    
     function about(){
         $viewData = [];
         $viewData["title"] = "Acerca de - Tienda online";
