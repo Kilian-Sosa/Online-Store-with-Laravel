@@ -19,6 +19,13 @@ class ProductController extends Controller{
             "image" => asset('img/sonytv.png'), "price" => 356.90);
     }
 
+    private function getProduct(int $id): int{
+        if($id == 0) return -1;
+        for ($i = 0; $i < sizeof(ProductController::$products); $i++) 
+            if(ProductController::$products[$i]["id"] == $id) return $i;
+        return -1;
+    }
+
     function index(){
         $this -> insert();
         $viewData = [];
@@ -26,5 +33,17 @@ class ProductController extends Controller{
         $viewData["subtitle"] = "Listado de Productos";
         $viewData["products"] = ProductController::$products;
         return view('products.index')->with("viewData", $viewData);
+    }
+
+    function show(int $id){
+        $this -> insert();
+        $productIdent = $this -> getProduct($id);
+        if($productIdent == -1) return view('products.error')->with("error", "No existe un producto con dicho ID");
+
+        $viewData = [];
+        $viewData["title"] = "Detalles del Producto - Tienda online";
+        $viewData["subtitle"] = "Listado de Productos";
+        $viewData["product"] = ProductController::$products[$productIdent];
+        return view('products.show')->with("viewData", $viewData);
     }
 }

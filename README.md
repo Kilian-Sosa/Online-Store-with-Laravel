@@ -75,6 +75,6 @@ De momento, el enlace al producto debe quedar vacío (hasta que implementemos es
 
 - Crea una nueva ruta denominada "/products/{id}" que será gestionada por el método "show($id)" del controlador "ProductController". Esta ruta se utilizará para mostrar los datos de un producto determinado (el indicado por el parámetro "id"). Por ejemplo, si accedemos a "/products/1" la aplicación mostrará los datos del producto cuyo id es 1.
 
-- El método show($id) del nuevo controlador deberá redirigir al usuario a la nueva vista que tendremos que implementar (con el contenido del fichero "show.txt" adjunto). Deberás enviarle a la vista los campos "title", "subtitle", y "products". La nueva vista se denominará "/resources/views/product/index.blade.php".
+- El método show($id) del nuevo controlador deberá redirigir al usuario a la nueva vista que tendremos que implementar (con el contenido del fichero "show.txt" adjunto). Deberás enviarle a la vista los campos "title", "subtitle", y "products". La nueva vista se denominará "/resources/views/product/show.blade.php".
 
 Por último, añade al menú superior un enlace que apunte a la ruta que muestra el listado de productos.
