@@ -20,3 +20,5 @@ Realiza las siguientes tareas para mostrar el listado de productos a partir de l
 - Elimina el array "products" del controlador de productos.
 
 - Modifica los métodos "index" y "show" de dicho controlador para cargar los datos de la base de datos, en lugar del array tal y como se hacía en la actividad anterior.
+
+Imagina que tras la implementación anterior queremos cambiar el aspecto de página que muestra la información de un producto para que tanto el nombre como la descripción se visualicen en mayúscula.
