@@ -6,7 +6,16 @@
 			Crear productos
 		</div>
 		<div class="card-body">
-			<form method="POST" action="****** RUTA *****">
+			@if($errors->any())
+				<div class="alert alert-danger">
+					<ul>
+						@foreach($errors->all() as $error)
+							<li>{{ $error }}</li>
+						@endforeach
+					</ul>
+				</div>
+			@endif
+			<form method="POST" action="{{route('admin.products.store')}}">
 				@csrf
 				<div class="row">
 				  	<div class="col">
@@ -30,42 +39,40 @@
 				  	<label class="form-label">Descripción</label>
 				  	<textarea class="form-control" name="description" rows="3"></textarea>
 				</div>
-				<button type="submit" class="btn btn-primary">Enviar</button>
+				<button type="submit" class="btn btn-primary">Añadir</button>
 			</form>
 		</div>
 	</div>
-	<div class="container">
-		<div class="card">
-		  	<div class="card-header">
-				Panel de control de productos
-		  	</div>
-			<div class="card-body">
-				<!-- Table -->
-				<div class="row">
-					<div class="col-12">
-						<table id="table" class="table table-striped table-dark">
-							<thead>
+	<div class="card">
+		<div class="card-header">
+			Panel de control de productos
+		</div>
+		<div class="card-body">
+			<!-- Table -->
+			<div class="row">
+				<div class="col-12">
+					<table id="table" class="table table-striped table-dark">
+						<thead>
+							<tr>
+								<th>Detalles</th>
+								<th>ID</th>
+								<th>Nombre</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach ($viewData['products'] as $product)
 								<tr>
-									<th>Detalles</th>
-									<th>ID</th>
-									<th>Nombre</th>
-									<th></th>
-									<th></th>
+									<td><input class='btn btn-info' type='submit' value='Detalles' disabled></td>
+									<td>{{$product['id']}}</td>
+									<td>{{$product['name']}}</td>
+									<td><input class='btn btn-secondary' type='submit' value='Editar' disabled></td>
+									<td><input class='btn btn-danger' type='submit' value='Borrar' disabled></td>
 								</tr>
-							</thead>
-							<tbody>
-								@foreach ($viewData['products'] as $product)
-									<tr>
-										<td><input class='btn btn-info' type='submit' value='Detalles' disabled></td>
-										<td>{{$product['id']}}</td>
-										<td>{{$product['name']}}</td>
-										<td><input class='btn btn-secondary' type='submit' value='Editar' disabled></td>
-										<td><input class='btn btn-danger' type='submit' value='Borrar' disabled></td>
-									</tr>
-								@endforeach
-							</tbody>
-						</table>
-					</div>
+							@endforeach
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
