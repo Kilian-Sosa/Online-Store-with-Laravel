@@ -1,24 +1,40 @@
-# A5.5 - Listado de productos (Base de datos)
-Realiza las siguientes tareas para mostrar el listado de productos a partir de la información contenida en una base de datos MySQL:
+# A5.6 - Panel de control de productos
+A continuación vamos a crear un panel de control que nos permita consultar los productos, editarlos y añadir nuevos. Para ello realizaremos lo siguiente:
 
-- Crea una base de datos en MySQL que tenga el mismo nombre que tu tienda online. 
+## Panel de control
+- Vamos a crear una nueva plantilla que utilizaremos únicamente para el panel de control. Dicha plantilla la añadiremos a la carpeta "resource/views/layouts" y se llamará "admin.blade.php". 
 
-- Crea un usuario que tenga todos los permisos sobre dicha base de datos. 
+- Su código será el que se incluye en "admin.blade.txt".
 
-- Crea una migración en Laravel que te permita añadir, a la base de datos anterior, la tabla "products". La tabla deberá tener los mismos campos que el array "products" definido en la actividad anterior, junto con los campos "created_at" y "updated_at".
+- La plantilla anterior utiliza una imagen y un css que se incluyen en esta actividad.
 
-- Modifica el fichero ".env" para establecer los parámetros necesarios para conectarte con la nueva base de datos utilizando el nuevo usuario y su contraseña.
+- Crea, en "app/Http/Controllers/Admin", un nuevo control denominado "AdminHomeController.php" con el código necesario para mostrar correctamente la vista que crearemos a continuación.
 
-- Ejecuta las migraciones.
+- Crea una nueva vista en "resource/views/admin/home" denominada "index.blade.php". Su código será el adjunto en "admin.home.index.blade.txt".
 
-- Comprueba que las tablas se han creado correctamente.
+- Crea la ruta necesaria para acceder a la nueva vista.
 
-- Inserta en la base de datos (a través de phpMyAdmin, por ejemplo) 4 productos.
+Comprueba que puedes acceder al nuevo panel de control y que todo se visualiza correctamente.
 
-- Crea el modelo "Product" asociado a la tabla que acabas de crear.
+## Listado de productos
+- Crea una nueva ruta que apunte a "/admin/products" que sea gestionada por el método "index" de "AdminProductController". Estará alojado en "app/Http/Controllers/Admin".
 
-- Elimina el array "products" del controlador de productos.
+- El controlador simplemente pasará a la vista el título de la página y el listado de todos los productos.
 
-- Modifica los métodos "index" y "show" de dicho controlador para cargar los datos de la base de datos, en lugar del array tal y como se hacía en la actividad anterior.
+- Crea la vista "resource/views/admin/product/index.blade.php". La vista debería mostrar el id y nombre del producto junto con un enlace para editarlo y eliminarlo (de momento, deshabilitados).
 
-Imagina que tras la implementación anterior queremos cambiar el aspecto de página que muestra la información de un producto para que tanto el nombre como la descripción se visualicen en mayúscula.
+- Añade la ruta de la administración de productos en la plantilla del panel de control.
+
+Comprueba que se muestran correctamente los productos.
+
+## Nuevo producto
+- Crea una nueva ruta que utilice el método "post" para crear un nuevo producto. Se llamará "admin.product.store" y la gestionará el método "store" del controlador "AdminProductController".
+
+- Sustituye el contenido de "resources/views/admin/product/index.blade.php" por el proporcionado en "admin.product.index.blade.txt"
+
+- Crea el método "store" en el controlador "AdminProductController" para poder validar y almacenar el nuevo producto en la base de datos. Valida lo siguiente:
+    El nombre sea obligatorio y que tenga un máximo de 255 caracteres
+    La descripción sea obligatoria
+    El precio sea obligatorio, numérico y mayor que cero.
+
+- La imagen no se le pide al usuario. De momento, almacena en la base de datos el nombre del fichero "image.jpg".

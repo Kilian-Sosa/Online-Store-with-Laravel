@@ -11,7 +11,7 @@
     />
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
     
-    <title>@yield('title', 'Tienda online')</title>
+    <title>@yield('title', 'Online Store')</title>
   <link rel="stylesheet" type="text/css" href="https://www3.gobiernodecanarias.org/educacion/cau_ce/cookies/cookieconsent.min.css"/><script  type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/cookies/cookieconsent.min.js"></script><script type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/cookies/cauce_cookie.js"></script><script type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/estadisticasweb/scripts/piwik-base.js"></script><script type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/estadisticasweb/scripts/piwik-eforma.js"></script></head>
   <body>
     
@@ -52,10 +52,10 @@
     <!-- footer -->
     <div class="copyright py-4 text-center text-white">
         <div class="container">
-        <small>
-            Desarrollo web en entorno servidor - 2º DAW
-        </small>
-        <p>{{now()->format('d-m-Y H:i:s')}}</p>
+          <small>
+              Desarrollo web en entorno servidor - 2º DAW
+          </small>
+          <p>{{now()->format('d-m-Y H:i:s')}}</p>
         </div>
     </div>
     <!-- footer -->
