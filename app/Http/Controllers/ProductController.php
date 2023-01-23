@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller{
 
@@ -17,7 +16,6 @@ class ProductController extends Controller{
     }
 
     function show(int $id){
-        $product = "";
         try {$product = Product::findOrFail($id);}
         catch(ModelNotFoundException $e){return view('products.error')->with("error", "Error: ID no encontrado");}
 
