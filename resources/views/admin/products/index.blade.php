@@ -3,7 +3,7 @@
 @section('content')
 	<div class="card mb-4">
 		<div class="card-header">
-			Crear productos
+			Crear Productos
 		</div>
 		<div class="card-body">
 			@if($errors->any())
@@ -13,6 +13,11 @@
 							<li>{{ $error }}</li>
 						@endforeach
 					</ul>
+				</div>
+			@endif
+			@if (session('success'))
+				<div class="alert alert-success">
+					{{ session('success') }}
 				</div>
 			@endif
 			<form method="POST" action="{{route('admin.products.store')}}" enctype="multipart/form-data">
@@ -28,7 +33,7 @@
 				  	</div>
 					<div class="col">
 						<div class="mb-3 row">
-							<label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Precio:</label>
+							<label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Precio (€):</label>
 							<div class="col-lg-10 col-md-6 col-sm-12">
 								<input name="price" type="number" step="0.01" class="form-control">
 							</div>
@@ -83,7 +88,7 @@
 									<td>{{$product['id']}}</td>
 									<td>{{$product['name']}}</td>
 									<td>
-										<form method="POST" action="{{route('admin.products.update', ['id' => $product["id"]])}}">
+										<form method="GET" action="{{route('admin.products.edit', ['id' => $product["id"]])}}">
 											<button class='btn btn-secondary' type='submit'>
 												<i class="bi bi-pencil"></i>
 											</button>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,7 +14,7 @@ class AdminProductController extends Controller{
         $viewData = [];
         $viewData["title"] = "Admin Panel - Listado de Productos - Tienda Online";
         $viewData["products"] = Product::all();
-        return view('admin.product.index')->with("viewData", $viewData);
+        return view('admin.products.index')->with("viewData", $viewData);
     }
     
     function store(Request $request){
@@ -23,7 +24,7 @@ class AdminProductController extends Controller{
             "name" => "required|max:255",
             "description" => "required",
             "price" => "required|decimal:0,2|min:1",
-            "image" => "required|image|mimes:jpeg,jpg,png,gif,svg"
+            "image" => "image|mimes:jpeg,jpg,png,gif,svg"
         ]);
         
         $newProduct = new Product();
@@ -33,10 +34,12 @@ class AdminProductController extends Controller{
         $newProduct -> setPrice($validatedData['price']);
         $newProduct -> save();
 
-        $imageName =  $newProduct -> id .'.'. $request->image->extension();
+        if($request -> hasFile("image")){
+            $imageName =  $newProduct -> id .'.'. $request->image->extension();
+            $newProduct -> setImage($imageName);
+            $newProduct -> save();
+        } 
 
-        $newProduct -> setImage($imageName);
-        $newProduct -> save();
 
         /* Other form of creating a Product
         $newProduct = Product::create([
@@ -57,14 +60,44 @@ class AdminProductController extends Controller{
             file_get_contents($request->file('image')->getRealPath())  
         );
 
+        session()->flash('success', 'El registro se ha añadido correctamente.');
+        return redirect()->back();
+    }
+
+    function edit(int $id){
+        try {$product = Product::findOrFail($id);}
+        catch(ModelNotFoundException $e){return view('products.error')->with("error", "Error: ID no encontrado");}
+
+        $viewData = [];
+        $viewData["title"] = "Actualizar Producto - Tienda online";
+        $viewData["subtitle"] = "Listado de Productos";
+        $viewData["product"] = $product;
+        return view('admin.products.edit')->with("viewData", $viewData);
+    }
+
+    function update(int $id, Request $request){
+        $product = Product::findOrFail($id);
+        $product->update($request->all());
+
+        if($request -> hasFile("image")){
+            Storage::disk('public')->delete(Product::find($id)->image);
+            $imageName =  $product -> id .'.'. $request->image->extension();
+            $product -> setImage($imageName);
+            Storage::disk('public')->put(  
+                $imageName,  
+                file_get_contents($request->file('image')->getRealPath())  
+            );
+        }
+        
+        $product->save();
+        session()->flash('success', 'El registro se ha actualizado correctamente.');
         return redirect()->back();
     }
 
     function delete(int $id){
         Storage::disk('public')->delete(Product::find($id)->image);
         Product::destroy($id);
+        session()->flash('success', 'El registro se ha eliminado correctamente.');
         return redirect()->back();
     }
-
-
 }
