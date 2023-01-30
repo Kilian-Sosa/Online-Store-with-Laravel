@@ -25,4 +25,10 @@ Route::get('/admin', 'App\Http\Controllers\Admin\AdminHomeController@index')->na
 
 Route::get('/admin/products', 'App\Http\Controllers\Admin\AdminProductController@index')->name("admin.products.index");
 
+Route::get('/admin/products/{id}', 'App\Http\Controllers\Admin\AdminProductController@show')->name("admin.products.show");
+
 Route::post('/admin/products/store', 'App\Http\Controllers\Admin\AdminProductController@store')->name("admin.products.store");
+
+Route::get('/admin/products/{id}/update', 'App\Http\Controllers\Admin\AdminProductController@update')->name("admin.products.update");
+
+Route::delete('/admin/products/{id}/delete', 'App\Http\Controllers\Admin\AdminProductController@delete')->name("admin.products.delete");

@@ -1,4 +1,9 @@
-# A5.7 - Panel de control - Adjuntando imágenes
-Modifica el formulario de creación de productos para que, con la ayuda de la clase Storage, el administrador pueda subir una imagen del producto. Para ello, utiliza en el formulario un nuevo campo denominado "image". 
+# A5.8 - Panel de control - Eliminando y editando productos
+- Habilita el enlace correspondiente del listado de productos del panel de control para que se pueda llevar a cabo la eliminación de productos de nuestra tienda online. Para ello, crea una nueva ruta "DELETE" denominada "/admin/products/{id}/delete" que mediante el método "delete" del controlador "AdminProductController" realizará el borrado.
+    OPCIONAL: elimina también el fichero asociado al producto.
 
-La imagen se debe almacenar en la carpeta "storage/app/public" del disco del servidor, y su nombre debe coincidir con el id del producto creado. La extensión deberá ser la misma que la de la imagen original.
+- Activa el botón de edición del listado de productos del panel de control para que puedas editar productos de nuestra tienda. Para ello, crea las siguientes rutas:
+
+    "/admin/products/{id}/edit" - Será gestionada por el método "edit" del controlador "AdminProductController". Dicho método mostrará un formulario en la vista "admin.product.edit" que permitirá visualizar los datos actuales del producto y actualizarlos postriormente.
+
+    "/admin/products/{id}/update" - Será la ruta a la que se enviará el formulario anterior para realizar la actualización. La gestionará el método "update" del controlador "AdminProductController".

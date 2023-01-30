@@ -69,11 +69,35 @@
 						<tbody>
 							@foreach ($viewData['products'] as $product)
 								<tr>
-									<td><input class='btn btn-info' type='submit' value='Detalles' disabled></td>
+									<td>
+										<form method="POST" action="{{route('admin.products.show', ['id' => $product["id"]])}}">
+											<input type="hidden" name="name" value="{{$product -> getName()}}">
+											<input type="hidden" name="price" value="{{$product -> getPrice()}}">
+											<input type="hidden" name="description" value="{{$product -> getDescription()}}">
+											<input type="hidden" name="image" value="{{$product -> getImage()}}">
+											<button class='btn btn-info' type='submit'>
+												<i class="bi bi-info-circle"></i>
+											</button>
+										</form>
+									</td>
 									<td>{{$product['id']}}</td>
 									<td>{{$product['name']}}</td>
-									<td><input class='btn btn-secondary' type='submit' value='Editar' disabled></td>
-									<td><input class='btn btn-danger' type='submit' value='Borrar' disabled></td>
+									<td>
+										<form method="POST" action="{{route('admin.products.update', ['id' => $product["id"]])}}">
+											<button class='btn btn-secondary' type='submit'>
+												<i class="bi bi-pencil"></i>
+											</button>
+										</form>
+									</td>
+									<td>
+										<form method="POST" action="{{route('admin.products.delete', ['id' => $product["id"]])}}">
+											@csrf
+											@method('DELETE')
+											<button class='btn btn-danger' type='submit' onclick="return confirm('¿Estás seguro de que quieres borrar el registro?')">
+												<i class="bi bi-trash3"></i>
+											</button>
+										</form>
+									</td>
 								</tr>
 							@endforeach
 						</tbody>

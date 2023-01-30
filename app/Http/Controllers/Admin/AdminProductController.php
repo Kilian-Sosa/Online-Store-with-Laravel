@@ -17,6 +17,8 @@ class AdminProductController extends Controller{
     }
     
     function store(Request $request){
+        //$out = new \Symfony\Component\Console\Output\ConsoleOutput();
+        //$out->writeln($request -> image);
         $validatedData = $request -> validate([
             "name" => "required|max:255",
             "description" => "required",
@@ -24,6 +26,7 @@ class AdminProductController extends Controller{
             "image" => "required|image|mimes:jpeg,jpg,png,gif,svg"
         ]);
         
+        $newProduct = new Product();
         $newProduct -> setName($validatedData['name']);  
         $newProduct -> setDescription($validatedData['description']);  
         $newProduct -> setImage('safe.jpg');  
@@ -56,4 +59,12 @@ class AdminProductController extends Controller{
 
         return redirect()->back();
     }
+
+    function delete(int $id){
+        Storage::disk('public')->delete(Product::find($id)->image);
+        Product::destroy($id);
+        return redirect()->back();
+    }
+
+
 }
