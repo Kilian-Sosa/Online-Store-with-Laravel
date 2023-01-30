@@ -15,7 +15,7 @@
 					</ul>
 				</div>
 			@endif
-			<form method="POST" action="{{route('admin.products.store')}}">
+			<form method="POST" action="{{route('admin.products.store')}}" enctype="multipart/form-data">
 				@csrf
 				<div class="row">
 				  	<div class="col">
@@ -30,7 +30,7 @@
 						<div class="mb-3 row">
 							<label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Precio:</label>
 							<div class="col-lg-10 col-md-6 col-sm-12">
-								<input name="price" type="number" class="form-control">
+								<input name="price" type="number" step="0.01" class="form-control">
 							</div>
 						</div>
 				  	</div>
@@ -38,6 +38,11 @@
 				<div class="mb-3">
 				  	<label class="form-label">Descripción</label>
 				  	<textarea class="form-control" name="description" rows="3"></textarea>
+				</div>
+				@csrf
+				<div class="mb-3">
+				  	<label class="form-label">Imagen</label>
+					<input type="file" class="form-control" name="image">
 				</div>
 				<button type="submit" class="btn btn-primary">Añadir</button>
 			</form>
