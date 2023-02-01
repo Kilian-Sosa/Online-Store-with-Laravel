@@ -34,3 +34,5 @@ Route::get('/admin/products/{id}/edit', 'App\Http\Controllers\Admin\AdminProduct
 Route::put('/admin/products/{id}/update', 'App\Http\Controllers\Admin\AdminProductController@update')->name("admin.products.update");
 
 Route::delete('/admin/products/{id}/delete', 'App\Http\Controllers\Admin\AdminProductController@delete')->name("admin.products.delete");
+
+Auth::routes();
