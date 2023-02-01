@@ -38,6 +38,11 @@ class AdminProductController extends Controller{
             $imageName =  $newProduct -> id .'.'. $request->image->extension();
             $newProduct -> setImage($imageName);
             $newProduct -> save();
+
+            Storage::disk('public')->put(  
+                $imageName,  
+                file_get_contents($request->file('image')->getRealPath())  
+            );
         } 
 
 
@@ -55,11 +60,6 @@ class AdminProductController extends Controller{
         //$newProduct -> save();
         */
 
-        Storage::disk('public')->put(  
-            $imageName,  
-            file_get_contents($request->file('image')->getRealPath())  
-        );
-
         session()->flash('success', 'El registro se ha añadido correctamente.');
         return redirect()->back();
     }
@@ -76,6 +76,13 @@ class AdminProductController extends Controller{
     }
 
     function update(int $id, Request $request){
+        $validatedData = $request -> validate([
+            "name" => "required|max:255",
+            "description" => "required",
+            "price" => "required|decimal:0,2|min:1",
+            "image" => "image|mimes:jpeg,jpg,png,gif,svg"
+        ]);
+        
         $product = Product::findOrFail($id);
         $product->update($request->all());
 
