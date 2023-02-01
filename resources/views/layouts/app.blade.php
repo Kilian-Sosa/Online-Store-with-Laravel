@@ -35,9 +35,6 @@
             <a class="nav-link active" href="{{route('home.index')}}">Home</a>
             <a class="nav-link active" href="{{route('home.about')}}">About</a>
             <a class="nav-link active" href="{{route('products.index')}}">Products</a>
-            @if(Auth::user() && Auth::user()->getRole() == 'admin')
-              <a class="nav-link active" href="{{route('admin.home.index')}}">Control Panel</a>
-            @endif
             @if(!Auth::user())   
               <a class="nav-link active" href="{{route('login')}}">LogIn</a>
               <a class="nav-link active" href="{{route('register')}}">Register</a>
