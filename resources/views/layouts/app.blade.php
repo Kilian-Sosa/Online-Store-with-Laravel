@@ -38,12 +38,15 @@
             @if(Auth::user() && Auth::user()->getRole() == 'admin')
               <a class="nav-link active" href="{{route('admin.home.index')}}">Control Panel</a>
             @endif
-            @if(!Auth::user())   
+
+            @guest
               <a class="nav-link active" href="{{route('login')}}">LogIn</a>
               <a class="nav-link active" href="{{route('register')}}">Register</a>
-            @else
+            @endguest
+            
+            @auth
               <a class="nav-link active" href="{{route('logout')}}">LogOut</a>
-            @endif
+            @endauth
           </div>
         </div>
       </div>
