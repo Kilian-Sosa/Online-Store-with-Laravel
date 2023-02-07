@@ -37,5 +37,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::delete('/admin/products/{id}/delete', 'App\Http\Controllers\Admin\AdminProductController@delete')->name("admin.products.delete");
 });
 
+Route::get('/profile', 'App\Http\Controllers\HomeController@profile')->name("profile.index");
+Route::post('/profile/update', 'App\Http\Controllers\HomeController@update')->name("profile.update");
+
 Route::get('logout', 'App\Http\Controllers\Auth\LoginController@logout');
 Auth::routes();

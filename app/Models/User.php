@@ -42,6 +42,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getName(): String{
+        return $this->attributes["name"];
+    }
+
     public function getRole(): String{
         return $this -> attributes["role"];
     }

@@ -76,7 +76,7 @@ class AdminProductController extends Controller{
     }
 
     function update(int $id, Request $request){
-        $validatedData = $request -> validate([
+        $request -> validate([
             "name" => "required|max:255",
             "description" => "required",
             "price" => "required|decimal:0,2|min:1",

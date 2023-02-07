@@ -44,9 +44,8 @@
 				  	<label class="form-label">Descripción</label>
 				  	<textarea class="form-control" name="description" rows="3"></textarea>
 				</div>
-				@csrf
 				<div class="mb-3">
-				  	<label class="form-label">Imagen</label>
+				  	<label class="form-label">Imágen</label>
 					<input type="file" class="form-control" name="image">
 				</div>
 				<button type="submit" class="btn btn-primary">Añadir</button>

@@ -28,9 +28,9 @@
             </div>
             <!-- sidebar -->
             <div class="col content-grey">
-                <nav class="p-3 shadow text-end">
-                    <span class="profile-font">Admin</span>
-                    <img class="img-profile rounded-circle" src="{{asset('storage/undraw_profile.svg')}}">
+                <nav class="p-3 shadow text-end d-flex justify-content-end align-items-center">
+                    <span class="profile-font mr-3">{{session('userName')}}</span>
+                    <a class="nav-link active" href="{{route('profile.index')}}"><img class="img-profile rounded-circle" src="{{asset('storage/undraw_profile.svg')}}"></a>
                 </nav>
 
                 <div class="g-0 m-5">

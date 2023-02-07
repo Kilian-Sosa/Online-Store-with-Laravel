@@ -12,9 +12,9 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
     
     <title>@yield('title', 'Online Store')</title>
-  <link rel="stylesheet" type="text/css" href="https://www3.gobiernodecanarias.org/educacion/cau_ce/cookies/cookieconsent.min.css"/><script  type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/cookies/cookieconsent.min.js"></script><script type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/cookies/cauce_cookie.js"></script><script type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/estadisticasweb/scripts/piwik-base.js"></script><script type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/estadisticasweb/scripts/piwik-eforma.js"></script></head>
-  <body>
-    
+    <link rel="stylesheet" type="text/css" href="https://www3.gobiernodecanarias.org/educacion/cau_ce/cookies/cookieconsent.min.css"/><script  type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/cookies/cookieconsent.min.js"></script><script type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/cookies/cauce_cookie.js"></script><script type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/estadisticasweb/scripts/piwik-base.js"></script><script type="text/javascript" src="https://www3.gobiernodecanarias.org/educacion/cau_ce/estadisticasweb/scripts/piwik-eforma.js"></script>
+  </head>
+  <body style="font-family: {{session('font', '')}}">
     <!-- header -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary py-4">
       <div class="container">
@@ -43,16 +43,16 @@
               <a class="nav-link active" href="{{route('login')}}">LogIn</a>
               <a class="nav-link active" href="{{route('register')}}">Register</a>
             @endguest
-            
+
             @auth
+              <a class="nav-link active" href="{{route('profile.index')}}">Profile</a>
               <a class="nav-link active" href="{{route('logout')}}">LogOut</a>
             @endauth
           </div>
         </div>
       </div>
     </nav>
-    
-    <header class="masthead bg-primary text-white text-center py-4">
+    <header class="masthead text-white text-center py-4" style="background-color: {{session('headColor', '#1abc9c')}}">
       <div class="container d-flex align-items-center flex-column">
         <h2>@yield('subtitle', 'Una tienda online con Laravel')</h2>
       </div>
