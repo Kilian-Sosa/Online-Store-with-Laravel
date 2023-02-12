@@ -11,7 +11,6 @@ class HomeController extends Controller{
     function index(){
         $viewData = [];
         $viewData["title"] = "Página principal - Tienda online";
-        if(!Auth::user()) Session::flush();
         if(Auth::user() && !session()->has('user')) session(['userName' => Auth::user() -> getName()]);
 
         return view('home.index')->with("viewData", $viewData);
