@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\JsonResponse;
+use Exception;
 
 class ProductController extends Controller{
 
@@ -24,5 +26,20 @@ class ProductController extends Controller{
         $viewData["subtitle"] = "Listado de Productos";
         $viewData["product"] = $product;
         return view('products.show')->with("viewData", $viewData);
+    }
+
+    function apiAll(){
+        try {
+            $products = Product::all();
+            return response()->json([
+                'data' => $products,
+                'message' => 'Succeed',
+            ], JsonResponse::HTTP_OK);
+        } catch (Exception $e) {
+            return response()->json([
+                'data' => [],
+                'message'=>$e->getMessage()
+            ], JsonResponse::HTTP_NOT_FOUND);
+        }
     }
 }
