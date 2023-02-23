@@ -1,6 +1,15 @@
-# A5.10 - Panel de control - Control de acceso y gestión de variables de sesión
-- Impide el acceso al panel de control a los usuarios que no tienen el rol "admin". En caso de que un usuario sin ese rol intente entrar, redirígelo a la página de inicio.
-- Habilita una página de configuración a la que podrán acceder todos los usuarios validados, de forma que se pueda modificar, durante la sesión, el color del encabezado y el tipo de letra que se utilizan en la plantilla de la tienda online. Para ello, utiliza los métodos siguientes. (Más información en "https://laravel.com/docs/9.x/session#the-global-session-helper"):
-        $value = session('key');
-        session(['key' => 'value']);
-        $value = session('key', 'default');
+# Realiza las siguientes modificaciones en la aplicación de tienda online:
+● Crea y ejecuta una nueva migración que permita modificar la tabla de productos
+para incluir un nuevo campo tipo texto denominado “especificaciones”.
+● Modifica el formulario de alta de productos ubicado en la administración de la tienda
+para permitir adjuntar al producto un fichero con las especificaciones del
+producto. El nombre del fichero deberá almacenarse en el campo definido en el
+apartado anterior.
+Debes tener en cuenta que es posible que para productos diferentes se pueden
+subir ficheros con la misma denominación y en ese caso la aplicación debería
+almacenar correctamente ambos ficheros.
+● Modifica la plantilla de la tienda para se muestre en el encabezado el nombre del
+usuario si ha iniciado sesión. Dicho nombre de usuario contendrá un enlace a la
+página donde se modifica su perfil (color y tipo de letra).
+● Implementa una APIRest que devuelva al cliente que hace la petición, la información
+de todos los productos registrados en la base de datos
