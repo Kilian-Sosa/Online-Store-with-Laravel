@@ -45,8 +45,12 @@
 				  	<textarea class="form-control" name="description" rows="3"></textarea>
 				</div>
 				<div class="mb-3">
-				  	<label class="form-label">Imágen</label>
+				  	<label class="form-label">Imagen</label>
 					<input type="file" class="form-control" name="image">
+				</div>
+				<div class="mb-3">
+				  	<label class="form-label">Especificaciones</label>
+					<input type="file" class="form-control" name="specifications">
 				</div>
 				<button type="submit" class="btn btn-primary">Añadir</button>
 			</form>

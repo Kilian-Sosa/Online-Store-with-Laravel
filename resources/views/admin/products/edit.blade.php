@@ -49,7 +49,7 @@
 				  	<textarea class="form-control" name="description" rows="3">{{$viewData['product']['description']}}</textarea>
 				</div>
 				<div class="mb-3">
-				  	<label class="form-label">Imágen</label>
+				  	<label class="form-label">Imagen</label>
 					<input type="file" class="form-control" name="image">
 				</div>
 				<button type="submit" class="btn btn-warning">Editar</button>
