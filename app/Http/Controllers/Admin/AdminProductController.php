@@ -24,7 +24,8 @@ class AdminProductController extends Controller{
             "name" => "required|max:255",
             "description" => "required",
             "price" => "required|decimal:0,2|min:1",
-            "image" => "image|mimes:jpeg,jpg,png,gif,svg"
+            "image" => "image|mimes:jpeg,jpg,png,gif,svg",
+            "specifications" => "mimes:txt",
         ]);
         
         $newProduct = new Product();
@@ -32,6 +33,7 @@ class AdminProductController extends Controller{
         $newProduct -> setDescription($validatedData['description']);  
         $newProduct -> setImage('safe.jpg');  
         $newProduct -> setPrice($validatedData['price']);
+        $newProduct -> setSpecifications('none');
         $newProduct -> save();
 
         if($request -> hasFile("image")){
@@ -42,6 +44,17 @@ class AdminProductController extends Controller{
             Storage::disk('public')->put(  
                 $imageName,  
                 file_get_contents($request->file('image')->getRealPath())  
+            );
+        } 
+
+        if($request -> hasFile("specifications")){
+            $specificationsName =  $newProduct -> id . '.txt';
+            $newProduct -> setSpecifications($specificationsName);
+            $newProduct -> save();
+
+            Storage::disk('public')->put(  
+                $specificationsName,  
+                file_get_contents($request->file('specifications')->getRealPath())  
             );
         } 
 

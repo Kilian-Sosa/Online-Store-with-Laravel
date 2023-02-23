@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model{
     use HasFactory;
-    protected $fillable = ['name', 'description', 'image', 'price'];
+    protected $fillable = ['name', 'description', 'image', 'price', 'specifications'];
 
     public function getID(): int{
         return $this -> attributes["id"];
@@ -44,5 +44,12 @@ class Product extends Model{
     public function getPrice(): float{
         return $this -> attributes["price"];
     }
-    
+
+    public function setSpecifications(String $specifications): void{
+        $this -> attributes["specifications"] = $specifications;
+    }
+
+    public function getSpecifications(): float{
+        return $this -> attributes["specifications"];
+    }
 }
