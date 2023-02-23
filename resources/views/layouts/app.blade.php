@@ -45,7 +45,7 @@
             @endguest
 
             @auth
-              <a class="nav-link active" href="{{route('profile.index')}}">Profile</a>
+              <a class="nav-link active" href="{{route('profile.index')}}">{{session('userName', 'Profile')}}</a>
               <a class="nav-link active" href="{{route('logout')}}">LogOut</a>
             @endauth
           </div>
